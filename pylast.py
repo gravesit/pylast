@@ -3008,7 +3008,7 @@ class User(_BaseObject):
         
         return seq
     
-    def get_top_artists(self, period = PERIOD_OVERALL):
+    def get_top_artists(self, period = PERIOD_OVERALL, limit = 50):
         """Returns the top artists played by a user. 
         * period: The period of time. Possible values:
           o PERIOD_OVERALL
@@ -3020,6 +3020,8 @@ class User(_BaseObject):
         
         params = self._get_params()
         params['period'] = period
+        if limit:
+            params['limit'] = limit
         
         doc = self._request('user.getTopArtists', True, params)
         
